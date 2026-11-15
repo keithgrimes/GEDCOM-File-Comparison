@@ -1,0 +1,10 @@
+
+source/GEDCOM-Console/obj/*
+source/GEDCOM-Console/bin/*
+source/GEDCOM-Library/obj/*
+source/GEDCOM-Library/bin/*
+source/GEDCOMTests/obj/*
+source/GEDCOMTests/bin/*
+.vscode/*
+.DS_Store
+**/.DS_Store
