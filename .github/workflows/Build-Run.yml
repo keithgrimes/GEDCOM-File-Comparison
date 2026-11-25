@@ -1,5 +1,5 @@
 name: GEDCOM File Comparison Build
-run-name: ${{ github.actor }} is comparing files
+run-name: Gedcome File Comparator Build and Release
 on:
     push:
         branches:
@@ -21,7 +21,7 @@ jobs:
           mkdir app
       - name: Compile the .NET application
         run: |
-          cd code/source
+          cd source
           dotnet build GEDCOM.sln -c release -o ${{ github.workspace }}/app
       - name: Create the Zip file to attach to the 
         run: |
