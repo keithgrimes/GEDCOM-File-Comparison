@@ -1,1 +1,40 @@
-
+name: GEDCOM File Comparison Build
+run-name: ${{ github.actor }} is comparing files
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+jobs:
+  Build-Compare:
+    runs-on: ubuntu-latest
+    steps:
+      - run: cd ${{ github.workspace }}
+      - name: Check out repository code
+        uses: actions/checkout@v6
+      - name: Get the Release Tag
+        run: |
+          php .github/workflows/GetBuildVersion.php BuildDetail.xml '${{ github.ref }}' version MYVERSION
+      - run: echo "Build Version calculated to ${{ env.MYVERSION }}"
+      - name: Create Directories for the application
+        run: |
+          mkdir app
+      - name: Compile the .NET application
+        run: |
+          cd code/source
+          dotnet build GEDCOM.sln -c release -o ${{ github.workspace }}/app
+      - name: Create the Zip file to attach to the 
+        run: |
+           cd ${{ github.workspace }}
+           zip -r GEDCOM-Comparison-${{ env.MYVERSION }}.zip app
+           pwd 
+           ls -lR 
+      - name: Create GitHub Release with Auto-Generated Notes
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ env.MYVERSION }}
+          name: ${{ env.MYVERSION }}
+          generateReleaseNotes: false  # Auto-generate release notes based on PRs and commits
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: "${{ github.workspace }}/GEDCOM-Comparison-${{ env.MYVERSION }}.zip"
+      - run: echo "🍏 This job's status is ${{ job.status }}."
