@@ -34,7 +34,7 @@ jobs:
         with:
           tag: ${{ env.MYVERSION }}
           name: ${{ env.MYVERSION }}
-          generateReleaseNotes: false  # Auto-generate release notes based on PRs and commits
+          generateReleaseNotes: true  # Auto-generate release notes based on PRs and commits
           token: ${{ secrets.GITHUB_TOKEN }}
           artifacts: "${{ github.workspace }}/GEDCOM-Comparison-${{ env.MYVERSION }}.zip"
       - run: echo "🍏 This job's status is ${{ job.status }}."
