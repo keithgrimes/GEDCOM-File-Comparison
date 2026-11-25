@@ -39,7 +39,7 @@ try
 	{
 	    // No file exists so you can only use the date/time 
 	    echo "File " . $argv[1] . "has NOT been found\n" ;
-	 	if (strcmp($argv[2],'refs/head/main') == 0) // This is main
+	 	if (strcmp($branch,'refs/heads/main') == 0) // This is main
 	 	{
 			$env_Entry = $argv[4] . "=" . $date;
 	 	}
