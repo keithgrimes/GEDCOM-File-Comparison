@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is comparing files
 on:
     push:
         branches:
-            - Fixes
+            - main
     workflow_dispatch:
 jobs:
   Build-Compare:
