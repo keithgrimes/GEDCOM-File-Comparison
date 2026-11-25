@@ -1,5 +1,5 @@
 name: GEDCOM File Comparison Build
-run-name: Gedcome File Comparator Build and Release
+run-name: Gedcom File Comparator Build and Release
 on:
     push:
         branches:
@@ -28,7 +28,7 @@ jobs:
            cd ${{ github.workspace }}
            zip -r GEDCOM-Comparison-${{ env.MYVERSION }}.zip app
            pwd 
-           ls -lR 
+           ls -l
       - name: Create GitHub Release with Auto-Generated Notes
         uses: ncipollo/release-action@v1
         with:
